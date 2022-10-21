@@ -1,0 +1,68 @@
+const exp = require("express");
+const app = exp();
+const path = require("path");
+const bodyParser = require("body-parser");
+const handlebars = require("express-handlebars");
+
+var HTTP_PORT = process.env.port || 8080
+
+function onHttpSStart(){
+    console.log("Express http server listening on: " + HTTP_PORT);
+}
+
+app.engine(".hbs", handlebars.engine({ extname: '.hbs' }));
+app.set('view engine', '.hbs');
+
+app.use(bodyParser.urlencoded({ extended: true}));
+
+app.use(exp.static("public"));
+
+app.get("/", function (req,res) {
+    //res.sendFile(path.join(__dirname, "home.html"));
+    var userInfo = {
+        fname: "Quyen",
+        lname: "Do"
+    };
+    
+    res.render("home", { data: userInfo, layout: false });
+});
+
+// app.get("/", function (req,res) {
+
+//     res.sendFile(path.join(__dirname, "login.html"));
+// });
+
+app.get("/user/:id", function(req, res) {
+    var userID = req.params.id;
+    console.log("The user ID is " + userID);
+    res.send("The user ID is " + userID);
+});
+
+//req.query
+app.get("/search", function (req, res) {
+    var search = req.query.search;
+    if(search){
+        res.render("home",{ search: search, layout: false});
+    }else{
+        res.render("home",{ error:"Please enter other username", 
+        layout: false });
+    }
+
+    console.log("You entered " + search);
+    res.send("You entered " + search);
+});
+
+//req.body
+app.post("/login", function (req, res) {
+    var username = req.body.username;
+    var password = req.body.password;
+
+    console.log("Your username is " + username);
+    console.log("Your password is " + password);
+    res.send("Your username is " + username);
+});
+
+//Router to using images in .html giles
+// app.use(express.view("view"));
+
+app.listen(HTTP_PORT, onHttpSStart);

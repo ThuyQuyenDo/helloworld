@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Thuy Quyen Do - 154483218</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+            <div class="container px-4">
+                <a class="navbar-brand" href="#page-top">Thuy Quyen Do - 154483218</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#services">Resume</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Header-->
+        <header class="bg-primary bg-gradient text-white">
+            <div class="container px-4 text-center">
+                <h1 class="fw-bolder">Welcome to My Assignment 2</h1>
+                <p class="lead">My name is Thuy Quyen Do and I come from Vietnam</p>
+                <a class="btn btn-lg btn-light" href="#about">Let's go!</a>
+            </div>
+        </header>
+        <!-- Blog section-->
+        <section id="about">
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2>My Blog</h2>
+                        <p class="lead">My daily blog I will post in following link:</p>
+                        <a class=".col-md-*-row" href="/blog">Daily blog</a>
+                        <ul>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Article section-->
+        <section class="bg-light" id="services">
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2>My Article</h2>
+                        <p class="lead">Click the following link if you want to visit some Article Pages:</p>
+                        <a class=".col-md-*-row" href="/article">My Article</a>
+                        <ul>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Account Page section-->
+        <section id="contact">
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2>My Account Page</h2>
+                        <p class="lead">I am going to create an Personal Account Page in the following link, please wait for me, Okay ?: </p>
+                        <a class=".col-md-*-row" href="/registration">My Registration</a>
+                        <ul>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- WHC section-->
+        <section id="contact">
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2>My WHC Page</h2>
+                        <p class="lead">I sometimes sign in to WHC Page, you are always welcomed to enter this:</p>
+                        <a class=".col-md-*-row" href="/WHC">My WHC Page</a>
+                        <ul>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- contact-->
+        <footer class="py-5 bg-dark">
+            <div class = "button_holderdiv">
+                <button onclick="window.location.href='/contact'" class="button button2"><div class="container px-4"><p class="m-0 text-center text-black"></i>Contact Me</button>
+            </div>
+
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+
+<body>
+    <h1>
+        Home Page
+    </h1>
+
+    {{>welcome data}}
+
+
+    {{#if data}}
+    <h2>
+        Hello {{data.fname}} {{data.lname}}!
+    </h2>
+    {{else}}
+    <h2> Hello Guest!</h2>
+    {{/if}}
+
+    {{#if search}}
+    <h2> You search about {{search}}</h2>
+    {{/if}}
+
+    {{#if error}}
+    <h2 style="color: blue"> {{error}} </h2>
+    {{/if}}
+
+    <h2> Search form</h2>
+
+    <img src="" />
+
+    <h2> Search form </h2>
+    <form action="/search" enctype="application/x-www-form-urlencoded" method="post">
+
+        <input type="text" name="search" value="{{search}}" 
+        placeholder="Enter a keyword" />
+
+        <input type="submit" name="s" value="Search" />
+    </form>
+
+    <h2> Login form </h2>
+
+    {{#unless loginErrorMsg}}
+    <h2> Please enter your username and password</h2>
+    {{/unless}}
+
+{{#if loginErrorMsg}}
+    <h2 style="color: blue;"> {{loginErrorMsg}}</h2>
+    {{else}}
+    <h2> Please enter your username and password</h2>
+    {{/if}}
+
+    <form action="/login" enctype="application/x-www-form-urlencoded" method="post">
+        <input type="text" value="" name="username" placeholder="Enter Username"
+
+        <input type="text" value="" name="password" placeholder="Enter Username you'd like to use">
+
+        <input type="submit" name="Login" value="Login" />
+    </form>
+</body>
+</html> -->

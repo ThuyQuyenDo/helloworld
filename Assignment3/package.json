@@ -1,6 +1,7 @@
 {
-  "name": "web",
+  "name": "assignment3",
   "version": "1.0.0",
+  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,8 +10,6 @@
   "author": "Thuy Quyen Do",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.1",
-    "express-handlebars": "^6.0.6"
-  },
-  "description": ""
+    "express": "^4.18.2"
+  }
 }
