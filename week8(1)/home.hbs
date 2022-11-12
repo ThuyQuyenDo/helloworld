@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+</head>
+<body>
+    <div>
+    <h1>search form</h1>
+    <form method="post" action="/user_search" enctype="application/x-www-form-urlencoded">
+    
+    </form>
+    </div>
+
+    <div>
+    <h1>update form</h1>
+    <form method="post" action="/user_search" enctype="application/x-www-form-urlencoded">
+    <input type="text" name= "fname" value="{{data.first_name}}" placehoder="enter user first name" /> <br>
+    <input type="text" name= "lname" value="{{data.last_name}}" placehoder="enter user last name" /><br>
+    <input type="text" name= "email" value="{{data.email}}" placehoder="enter user email" />
+    
+    </form> 
+    </div>
+</body>
+</html>

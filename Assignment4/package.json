@@ -1,6 +1,7 @@
 {
-  "name": "web",
+  "name": "assignment4",
   "version": "1.0.0",
+  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
-    "express-handlebars": "^6.0.6"
-  },
-  "description": ""
+    "handlebars": "^4.7.7",
+    "mongoose": "^6.7.2"
+  }
 }
