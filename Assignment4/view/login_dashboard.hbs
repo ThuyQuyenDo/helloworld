@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome to my story</title>
+    <style>
+        body {
+            background-color: gray;
+            color: rgb(47, 78, 99);
+        }
+
+        header::before {
+            background: url('https://a.cdn-hotels.com/gdcs/production169/d706/0f0aac2e-d76c-491a-bdb7-8782ab164670.jpg') no-repeat center center/cover;
+            content: "";
+            position: absolute;
+            top: 2;
+            left: 2;
+            width: 90%;
+            height: 90%;
+            z-index: 1;
+            opacity: 0.3;
+        }
+
+        section {
+            height: 200px;
+            margin: 1px 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            font-size: 4rem;
+        }
+
+        p {
+            text-align: center;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/registration">Registration</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Log in</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+    <section class="h-100 bg-pink">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-90">
+            <div class="col">
+                <div class="row g-0">
+                    <h1 style="text-align:center">Login Dashboard</h1>
+                    <br>
+                    <h3 style="text-align:center">Welcome</h3>
+                    <br>
+                        <p style="text-align:center">Name: {{fname}} {{lname}}</p>
+                        <p style="text-align:center">Username: {{username}}</p>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>      
+    
+</main>
+
+    <section>
+        <h1> Have a good day.</h1>
+        <footer class="bd-footer py-4 py-md-5 mt-5 bg-light">
+        <div class="container p-4 pb-0">
+            <!-- Section: Social media -->
+            <section class="mb-4">
+              <!-- Facebook -->
+              <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/profile.php?id=100005214495193" role="button"
+                ><i class="fab fa-facebook-f">Facebook</i></a>
+              <!-- Instagram -->
+              <a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/tquyencin_/" role="button"
+                ><i class="fab fa-instagram">Instagram</i></a>
+              <!-- Github -->
+              <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/ThuyQuyenDo" role="button"
+                ><i class="fab fa-github"></i>Github</a>
+            </section>
+            <!-- Section: Social media -->
+          </div>
+    </footer>
+    </section>
+
+</body>
+
+</html>
