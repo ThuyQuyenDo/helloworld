@@ -74,28 +74,18 @@ app.post("/login", (req, res) => {
         express: /[~`!#@$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(req.body.username)
     }
 
-    if (userInfo.user == "" || 
-        userInfo.pass == "") {
+    if (userInfo.user == "" || userInfo.pass == "") {
 
-        res.render("login", { 
-            data: userInfo, 
-            layout: false 
-        });
+        res.render("login", { data: userInfo, layout: false });
         return;
     }
 
     if (userInfo.express) {
-        res.render("login", { 
-            data: userInfo, 
-            layout: false 
-        });
+        res.render("login", { data: userInfo, layout: false });
         return;
     }
 
-    student.findOne({ 
-        username: userInfo.user, 
-        password: userInfo.pass }, 
-        ["fname", "lname", "username"]).exec().then((data) => {
+    student.findOne({ username: userInfo.user, password: userInfo.pass }, ["fname", "lname", "username"]).exec().then((data) => {
         if (data) {
             if (data.id == "6366c66a9afb45a8af4a82c4") {
                 res.render("dashboard", { fname: data.fname, lname: data.lname, username: data.username, layout: false });
@@ -176,15 +166,14 @@ app.post("/registration", (req, res) => {
 
     var studentName = "";
     for (let index = 0; index < userInfo.email.length; index++) {
-        const argue = userInfo.email[index];
-        if (argue != '@') {
-            username += argue
+        const element = userInfo.email[index];
+        if (element != '@') {
+            username += element
         }
-        if (argue == '@') {
+        if (element == '@') {
             break;
         }
     }
-    
     let c1 = new student({
         fname: userInfo.fname,
         lname: userInfo.lname,
