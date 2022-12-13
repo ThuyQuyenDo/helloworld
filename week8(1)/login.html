@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+</head>
+
+<body>
+    <div class="text-center">
+        <h1>Log in</h1>
+    </div>
+    <form name="post" action="/login" enctype="application/x-www-form-urlencoded" method="post">
+        <div class="container bg-light">
+            <div class="row text-center">
+                <div class="p-3 col-sm-12 col-md-12">
+                    <label for="email" class="form-label">Username: </label>
+                    <input type="text" name="username" id="username" placeholder="username" value="" autofocus="">
+                </div>
+                <div class="p-3 col-sm-12 col-md-12">
+                    <label for="password" class="form-label">Password: </label>
+                    <input type="text" name="password" id="password" placeholder="password" value=""
+                        autofocus="">
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary">Log In</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        function login_in() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            let data = { username: username, password: password};
+
+            let data_obj_json = JSON.stringify(data);
+        }
+        fetch("http://localhost:8080/user_login", {
+            method: "POST",
+            header: { "content-type" : "application/json"},
+            body: data_obj_json
+        }).then((data) => {
+            console.log(data);
+            return data.json();
+        }).catch(err =>{
+            console.log("Sorry, you entered the wrong email and/or password")
+        });
+    </script>
+</body>

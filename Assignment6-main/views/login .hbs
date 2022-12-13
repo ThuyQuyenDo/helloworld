@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Login</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/><title></title>
+
+    <link type="text/css" rel="stylesheet" href="https://fast.fonts.net/cssapi/7104cb2a-976d-4c0f-803f-1a83c9190762.css"/>
+    <style type="text/css">
+       body {
+            font: normal 14px/16px 'Trade Gothic W01',Arial,Helvetica,Verdana,sans-serif;
+            background-color: #fcfcfc; /*#f7f4f4*/
+            height: 100%;
+            margin: 0;
+            color:#24292e;
+            line-height: 1.5;
+            -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+        }
+        h1, h2 {
+            margin-top: 0px;
+            line-height: 1;
+            margin-bottom: 24px;
+        }
+        p {
+            line-height: 1.2;
+        }
+        .spacer {
+            margin: 15px 0px;
+        }
+        .container {
+            margin: 0 auto;
+            width: 100%;
+        }
+        .login-section, .alert-section{
+            max-width: 292px;   
+            background-color: #fff;
+            border: 1px solid #dad8de;
+            border-radius: 2px;
+            padding: 24px 24px 24px 24px;
+            margin: 0 auto;
+
+        }
+        .alert-section {
+            border: 1px solid color: #c86e6e;
+            margin-bottom: 8px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            background: #fcfcfc;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+        .alert-section svg {
+            padding-right: 15px;
+            fill:#656565;
+        }
+        .alert-section p {
+            font-size: 12px;
+            flex: 1 1 100px;
+            line-height: 1.5;
+
+        }
+
+        #logo {
+            width: 342px;
+            margin: 30px auto 28px;
+            display: block;
+        }
+        .content {
+            padding: 0 6px 0 6px;
+            position: relative;
+        }
+        .input-label {
+            font-weight: 600;
+        }
+        .field, .password-field {
+            font: normal 14px/24px 'Trade Gothic W01',Arial,Helvetica,Verdana,sans-serif;
+            color: #262626;
+            background: #fefefe none;
+            margin-top: 2px;
+            padding: 5px 0 5px 10px;
+            border: 1px solid #dad8de;
+            width: 100%;
+            transition: border-color 0.3s cubic-bezier(.25,.8,.25,1);
+            vertical-align: middle;
+            -webkit-border-radius: 0;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-appearance: none;
+            border-radius: 2px;
+        }
+        .password-field {
+            margin-bottom: 16px;
+        }
+        .field {
+            margin-bottom: 24px;
+        }
+        .field::placeholder {
+            color: #999999;
+        }
+        .field:focus {
+            outline:none;
+            border: 1px solid #4d90fe;
+        }
+        .password .field {
+            margin-bottom: 12px;
+        }
+        .btn-submit {
+            font: normal 18px/24px 'Trade Gothic W02',Arial,Helvetica,Verdana,sans-serif;
+            width:100%;
+            padding: 12px 0 10px 0;
+            transition: background-color 0.3s cubic-bezier(.25,.8,.25,1);;
+            background-color: #A41034;
+            border: 0;
+            color: white;
+            cursor: pointer;
+            display: inline;
+            line-height: 1;
+            vertical-align: middle;
+            white-space: nowrap;
+            text-transform: uppercase;       
+            margin: 12px 0 6px; 
+            border-radius: 2px !important;
+        }
+        .btn-submit:hover {
+            background-color: #b42749;  
+        }
+        .btn-submit{
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+            border-radius: 0;
+        } 
+        .label-link {
+            float: right;
+            font-size: 13px;
+        }
+        .label-link a {
+            color: #336699;
+            text-decoration: none;
+        }
+        .label-link a:hover {
+            text-decoration: underline;
+            color: #A41034;
+        }
+        .help-link {
+            text-align: center;
+            margin-top: 18px;
+        }
+        .help-link a {
+            font-size: 13px;
+            line-height: 14px;
+            text-align: center;
+            color: #262626;
+            text-decoration: none;
+        }
+        .help-link a:hover {
+            text-decoration: underline;
+        }
+        .checkbox label {
+            display: block;
+            padding-left: 15px;
+            text-indent: -15px;
+            font-size: 13px;
+        }
+        .checkbox input {
+          width: 13px;
+          height: 13px;
+          padding: 0;
+          margin:0;
+          vertical-align: bottom;
+          position: relative;
+          top: -2px;
+          *overflow: hidden;
+        }
+        .info {
+            display: block;
+            margin-bottom: 15px;
+        }
+        .error {
+            font-size: 12px;
+            background: #ffe6e6;
+            color: #c86e6e;
+            margin: 0 0 15px;
+            border-radius: 2px;
+            padding: 0px;
+            padding-left: 12px;
+        }
+        ul.error {
+            list-style: none;
+        }
+        ul.error li {
+            padding-bottom: 6px;
+        }
+        
+        .recovery-form {
+            margin: 25px 0px 10px 0;
+        }
+        .radio-btn {
+            margin-bottom: 15px;
+        }
+        /* Styling for Duo Login Page. Overrides the login-section CSS*/
+        .duo-login #duo_form {
+            width: 100%;
+            min-width: 304px;
+            max-width: 620px;
+            height: 330px;
+            background: transparent;
+        }
+        .duo-login #duo_form iframe {
+            max-width: 100%;
+        }
+        .duo-login .login-section {
+            max-width: 620px;   
+            background-color: #fcfcfc;
+            border: none;
+        }
+        .duo-login .content {
+            padding: 0;
+        }
+        /*Footer */
+        footer {
+            width: 100%;
+            text-align: center;
+            font-size: 12px;
+            padding-top: 10px;
+
+        }
+        #copyright {
+            color: #616161;
+            padding: .6em 0;
+        }
+        #footer ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: stretch; /* Default */
+            justify-content: space-between;
+            max-width: 280px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        #footer ul li {
+            padding: 0 .6em;
+            line-height: 22px;
+            display: block;
+            flex: 0 1 auto; /* Default */
+            list-style-type: none;
+        }
+         #footer a {
+            color: #336699;
+            
+            text-decoration: none;
+        }
+        #footer ul li a:hover {
+            text-decoration: underline;
+            color: #A41034;
+        }
+        #footer ul li.copy {
+            display: none;
+        }
+        .footer-span {
+            display: inline-block;
+            padding:11px;
+        }
+
+        /* Queries */
+        @media (max-width: 360px) {
+            .content {
+                padding: 0 12px 0 12px;
+            }
+            .login-section {
+                background-color: #fff; 
+                max-width: 300px;
+                padding: 24px 8px 24px 8px;
+            }
+            .alert-section {
+                padding: 0;
+                background-color: transparent;
+                padding: 6px 12px 6px 12px;
+            }
+            .alert-section p {
+                padding: 0 6px 0 6px;
+            }
+            #logo {
+                width: 290px;
+                max-width: 95%;
+                padding: 0px 0px;
+            }
+            footer {
+                font-size: 11px;
+            }   
+        }
+        @media (max-width: 325px) {
+            body {
+                background-color: #fff;
+            }    
+            .login-section, .alert-section {
+                background-color: transparent;
+                border:none;
+            }
+            .alert-section {
+                margin-bottom: 0px;
+            }
+        }
+        h2 {
+            display: inline;
+        }
+
+        /* CSS animation */
+        @-webkit-keyframes fadeIn {
+            0% { 
+                opacity:0; 
+                transform: scale(0.6);
+            }
+
+            100% {
+                opacity:100%;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity:0; }
+            100% { opacity:100%; }
+        }
+    </style>
+
+
+    <link rel="icon" href="https://cdn.britannica.com/55/2155-050-604F5A4A/lion.jpg" type="image/x-icon"/></head>
+
+            <!--<div th:include="hbs_fragments/alert"/>--><div class="login-section">
+                <div class="content">
+            <h1>Sign In</h1>
+
+    <form method="post" id="fm1" name="loginForm">
+        <!-- /* Username */ --><div>
+                <label class="input-label" for="email">Username</label>
+                <input class="field required"
+                       placeholder="e.g."
+                       id="username"
+                       size="25"
+                       tabindex="1"
+                       type="email"
+                       accesskey="u"
+                       autocomplete="off" name="username" value=""/></div>
+
+            <!-- /* Password */ --><label class="input-label" for="password">Password</label>
+            <input class="password-field required"
+                   placeholder=""
+                   type="password"
+                   id="password"
+                   size="25"
+                   tabindex="2"
+                   accesskey="p"
+                   autocomplete="off" name="password" value=""/>
+            </span>
+
+
+        <!-- /* Remember me */ --><div class="checkbox">
+            <label for="rememberMe"><input class="checkbox" tabindex="3" type="checkbox" name="rememberMe" id="rememberMe"  ></input> Keep me signed in.</label>
+        </div>
+        <div class="spacer"></div>
+        <input type="hidden" name="execution" value="a9376a31-f7cd-4342-9090-519203279122_ZXlKaGJHY2lPaUpJVXpVeE1pSXNJblI1Y0NJNklrcFhWQ0o5Li1jTEVvSVBUSml3amI4bi1Hb0VMbG5fYWRzT0JjVV9abzRqSHNVRERJWEpObVFlQlBXTS1DTElTZU5nQnpiWk5TbG00Z2tqT0FjTlA4RnJ6WklZMzNyZzNkdzFQRHZMbG1Fby1GRTJfeTlYcG14ZnJFZEI2Zm5Fbno5VkN0a2hUbl9QNGRqZmFaVUhRMkFpeTFYQUxncHo1VVVwOXNHQ2pNODhQT0ZzU3J3d2ltZGF4S2NuLTF0bW1YeVgxeDdkSDBEY2tEOTJwcEEzb0V2YW9hR1dET3RjM3c5VzQ1a0tYb2hqMW9SMEprQ0d2dUVWamRpMDVOS00wTy1fU0dZSno0S0VVTnJQRkp2Zm5Qd2VqV3hudDJQS2llZDBYVmRzajRDWXd3aElYdWRvbW5YWGk3ZFhaOHhMNFFpc0w1S0VwNzU3UWthWjNOZktTSEJzdDRNcFJONW9HU3VIRmFNMkdhcE5Fd19fd0ROeVY3ZEdiNTFBVmVvWF9nbVNjalNvUGRoQWwxYjhjMEZrNjAwLV9VQ1hhWXZfWHVCUTh4MTBBa282VHUyZlFuNU9wRVJiMlFrMFM4WTBVQ1FPbGdSYWJFSnVxT25pNlZ5bDBoZWlLVlIzMkV3N21iQnk3NmZUT1ZVVUtyekhMWWEtUjZya0Nld3RvV1RtclE5d25zbHJwSFM1TGlYa21oYUNOS1dpZjM4M1JnSDVzY2hqN0dBcHZ1dXZHQkdDMGdBZ3pKMEhDZjhkQXBDclI5b1U2S05LU3kzR2FURlRNendlblBMQXBvSEFSM1pSOEQwU0FPdW12VDRTZzdSU3l5cHNPM2R2X28tS2dRZDl6djhacjNaS1dVd2QxNGFLUlVOUlNWQnFnSFlXYWVPR2lKRDdvTTZDTWUxczhXaEszUjNtN3lLRHdaZ2xGU20xdlp1Ul9SOHBIb29ZQzhMMUFZbmpZbGhOUk9LYzQybndEd2VQSGhTRkY0WnFUQk15TjMtY2lQRU9GYlZnWFpmNm9scmx0TXlPZ1cyOUZBYVZ4TDd0QlBUM3JYX1ZvUkp6aFRMQXVMUEt6aDhDYTFWUzc3WU03MnpLeEJtZTRSdXBCODFGTGw3OFNuSVFfT2MweUVqWmdDRGNla1NmYUlxX1BHa1VkaVlScndYSEJpNEFLZWFSejI3Z2F5bDRCUHdpdWFxY1BlOXdGTmRMenBnNDZRejJibk42OXlxeW92bUxPNXdDSDY1SUJNOGs2VlNPeGdoVHBvVmFoQzR0SDhoQ2tOR3NObkM2LTMwWXJfbGlNUXFod0ZFckN2WkxObEFGZFVjcjVsT0FOS1JxQTNWRW9OYzVDbWtDUFpzbktpUmNDcmN4RkFqVUJQNEpuNnhKLXREWTR0WThIcDJLcFZUdTFFcWpXREViblVDQ19JaE5XRWdPTUFpclJhalpZcVgwakdsQnloZkdkR0x2WUlIbWJXYXcxbDFteEsyRTl6VTlqS1FHZUxGSWdnYnRTUUlETzhWOFdkUVMyUXA0LlF1Q0loV1pQSU5XS2RjeWtiTVdTSkQ2dGV5VU5hQnBrQlBoeDRWalJzU0JEU2RRQTBIaU1xdFUxSTZ0T25lamxnU2t5UFU4UDExVGRtNmNraXl5UnRR"/><input type="hidden" name="_eventId" value="submit"/><input type="hidden" name="geolocation"/><input class="btn btn-submit btn-block"
+               name="submit"
+               accesskey="l"
+               value="Sign in"
+               tabindex="4"
+               type="submit"/></form>
+</div>      
+        </div>
+        <div><footer>
+  <div id="footer">
+    <div id="copyright">  
+      <ul>
+        <li><a href="https://www.facebook.com/profile.php?id=100005214495193">Facebook</a></li>       
+        <li><a href="https://www.instagram.com/tquyencin_/">Instagram</a></li>     
+        <li><a href="https://github.com/ThuyQuyenDo">Github</a></li>
+      </ul>    
+    </div>
+  </div>
+</footer></div>
+    </body>
+</html>
