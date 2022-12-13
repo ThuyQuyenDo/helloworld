@@ -1,3 +1,4 @@
+const HTTP_PORT = process.env.PORT || 8080;
 const express = require("express") 
 const app = express();
 const path = require("path");
@@ -64,48 +65,39 @@ app.get("/", function(req, res) {
                 image: element.image
             });
         });
-        res.render("blog", { admData: blogData, layout: false});
+        res.render("blog", { 
+            title: blogData, 
+            layout: false
+        });
     });
 });
 
-app.get("/article", function(req, res) {
+app.get("/view", function(req, res) {
     res.render("read_more", {layout: false});
 });
 
 app.post("/article", function(req, res) {
     blogContent.findOne({ title: req.body.title }).exec().then((data) =>{
-        if(data) 
-        {
-         res.render("read_more", {
+        res.render("read_more", {
             id:data._id, 
             title:data.title, 
             content:data.content, 
             date:data.date, 
             image:data.image, 
             layout: false});
-        }
-        else
-        {
-         res.render("blog", {
-            errors: "not able to bring article",
-            layout: false
-        });
-        }
      });
 });
 
-app.post("/update_article", ensureLogin, function(req, res){
+app.post("/update", ensureLogin, (req, res) => {
     blogContent.updateOne({
-        _id : req.body.UpdateID
-    },
-    {$set: {
+        _id : req.body.updateID
+    },{
+        $set: {
         title: req.body.title,
         date : req.body.date,
         content: req.body.content,
-        image : req.body.image
-    
+        image : req.body.img
      }}).exec();
-
     res.redirect("/");
 });
 
@@ -113,67 +105,64 @@ app.get("/registration", function(req, res) {
     res.render("registration", {layout: false});
 });
 
-function dateOfBirth(birth) 
-{
+function dateOfBirth(birth) {
     const dob = /^\d{2}-\d{2}-\d{4}$/;
     return dob.test(birth); 
 }
 
-function phoneNum(num) 
-{
+function phoneNum(num) {
     const phone = /^\d{3}-\d{3}-\d{4}$/;
     return phone.test(num); 
 }
 
-
 app.post("/registration", function(req, res){
-    var registrationData = {
+    var userData = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         username: req.body.username,
         password: req.body.password,
         address: req.body.address,
         dob: req.body.dob,
-        phoneD: req.body.phoneD,
+        phoneNumber: req.body.phoneNumber,
         course: req.body.course,
         email: req.body.email
     }
 
-    if(registrationData.username == "" || 
-        registrationData.password == "" || 
-        registrationData.dob == "" || 
-        registrationData.phoneD == "")
+    if(userData.username == "" || 
+        userData.password == "" || 
+        userData.dob == "" || 
+        userData.phoneNumber == "")
     {
-        var registrationError = "Registration Error";
+        var userError = "Registration Error";
         res.render("registration", { 
-            registrationError: registrationError, 
-            data: registrationData, 
+            userError: userError, 
+            data: userData, 
             layout: false });
         return;
     }
-    else if(dateOfBirth(registrationData.dob) != true)
+    else if(!dateOfBirth(userData.dob))
     {
         var dobError = "dd-mm-yyyy";
         res.render("registration", { 
             dobError: dobError, 
-            data: registrationData, 
+            data: userData, 
             layout: false });
     }
-    else if(phoneNum(registrationData.phoneD) != true)
+    else if(!phoneNum(userData.phoneNumber))
     {
         var phoneError = "";
         res.render("registration", { 
             phoneError: phoneError, 
-            data: registrationData,
+            data: userData,
             layout: false });
     }
-    else if(registrationData.password.length < 7 || 
-            registrationData.password.length > 12)
+    else if(userData.password.length < 7 || 
+            userData.password.length > 12)
     {
-        var pssError = "The password length should be between 6 to 12 characters"
+        var pssError = "The password length should be between 7 and 12 characters"
         res.render("registration", { 
-            passwordError: pssError, 
-            data: registrationData, 
+            passwordError: passwordError, 
+            data: userData, 
             layout: false});
     }
     else
@@ -181,24 +170,22 @@ app.post("/registration", function(req, res){
         res.render("dashboard", {layout: false});
     }
 
-    bcrypt.hash(registrationData.password, 10).then(hash=>{
+    bcrypt.hash(userData.password, 10).then(hash=>{
         let accountInfo = new userInfo({
-            firstName: registrationData.firstName,
-            lastName: registrationData.lastName,
-            username: registrationData.username,
+            firstName: userData.firstName,
+            lastName: userData.lastName,
+            username: userData.username,
             password: hash,
-            address: registrationData.address,
-            dob: registrationData.dob,
-            phoneD: registrationData.phoneD,
-            course: registrationData.course,
-            email: registrationData.email
+            address: userData.address,
+            dob: userData.dob,
+            phoneNumber: userData.phoneNumber,
+            course: userData.course,
+            email: userData.email
         }).save((e, data) =>{
-            if(e)
-            {
+            if(e) {
                 console.log(e);
             }
-            else
-            {
+            else {
                 console.log(data);
             }
         });
@@ -220,28 +207,26 @@ app.get("/logout", function(req, res) {
 
 function specialChar(str)
 {
-    const speStr = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-    return speStr.test(str);
+    const specialChar = /[~`!#@$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/;
+    return specialChar.test(str);
 }
 
 app.post("/login", function(req, res){
 
     var loginData = {
-        usr: req.body.username,
-        pss: req.body.password
+        user: req.body.username,
+        pass: req.body.password
     }
 
-    if(loginData.usr == "" || loginData.pss == "" )
-    {
-        var loginError = "The username and the password should be entered!!!";
+    if(loginData.user == "" || loginData.pass == "" ) {
+        var loginError = "Please fill username and password";
         res.render("login", { 
             loginError: loginError, 
             data: loginData, 
             layout: false 
         });
     }
-    else if(specialChar(loginData.usr) == true)
-    {
+    else if(specialChar(loginData.usr) == true) {
         var specialError = "Error: Special character is not allowed !!";
         res.render("login", { 
             specialError: specialError, 
@@ -319,22 +304,18 @@ app.post("/administration", function(req, res){
         content: req.body.content,
         image : req.body.image
     }).save((e, data) =>{
-        if(e)
-        {
+        if(e) {
             console.log(e);
         }
-        else
-        {
+        else {
             console.log(data);
         }
     });
-
     res.redirect("/");
 });
 
 app.use(function(req,res){
-    res.status(404).send("Page not found");
+    res.status(404).send("Sorry! Page not found");
 });
 
-var port = process.env.PORT || 8080;
-app.listen(port);
+app.listen(HTTP_PORT);
